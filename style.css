@@ -1,0 +1,272 @@
+/* 🎨 PALETTE */
+:root{
+  --black:#11120D;
+  --olive:#565449;
+  --bone:#D8CFBC;
+  --white:#FFFBF4;
+  --soft:#bfb6a2;
+  --glass:rgba(255,255,255,0.03);
+}
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* GLOBAL */
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--black);
+  color:var(--white);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  width:100%;
+  top:0;
+  padding:20px 10%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(17,18,13,0.7);
+  backdrop-filter:blur(20px);
+  z-index:1000;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.navbar h3{
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+.nav-links{
+  display:flex;
+  gap:30px;
+  list-style:none;
+}
+
+.nav-links a{
+  color:var(--soft);
+  text-decoration:none;
+  font-size:14px;
+  position:relative;
+  transition:0.3s;
+}
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  bottom:-4px;
+  left:0;
+  width:0%;
+  height:1px;
+  background:var(--bone);
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  color:var(--white);
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+/* SECTION */
+.section{
+  padding:140px 12%;
+  max-width:1100px;
+  margin:auto;
+}
+
+.section-title{
+  font-size:32px;
+  margin-bottom:40px;
+  position:relative;
+}
+
+.section-title::after{
+  content:"";
+  display:block;
+  width:50px;
+  height:2px;
+  background:var(--bone);
+  margin-top:10px;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.hero h1{
+  font-size:64px;
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+.hero h2{
+  color:var(--soft);
+  margin-top:10px;
+}
+
+.hero p{
+  color:var(--soft);
+  margin-top:10px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+}
+
+/* CARD */
+.card{
+  background:var(--glass);
+  border:1px solid rgba(255,255,255,0.05);
+  padding:25px;
+  border-radius:18px;
+  margin-bottom:20px;
+  transition:all 0.4s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+/* ✨ GLOW EFFECT */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:18px;
+  padding:1px;
+  background:linear-gradient(120deg, transparent, var(--bone), transparent);
+  opacity:0;
+  transition:0.4s;
+}
+
+.card:hover::before{
+  opacity:1;
+}
+
+.card:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 10px 40px rgba(216,207,188,0.15);
+}
+
+/* TEXT INSIDE CARDS */
+.card strong{
+  display:block;
+  margin-bottom:8px;
+  font-weight:500;
+}
+
+.card p{
+  color:var(--soft);
+  font-size:14px;
+}
+
+/* LINKS */
+a{
+  color:var(--bone);
+  text-decoration:none;
+  font-size:14px;
+  transition:0.3s;
+}
+
+a:hover{
+  letter-spacing:1px;
+}
+
+/* BUTTON */
+.cv-button{
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 28px;
+  background:var(--bone);
+  color:black;
+  border-radius:25px;
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+}
+
+.cv-button:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px rgba(216,207,188,0.4);
+}
+
+/* PROGRESS BARS */
+.progress{
+  height:6px;
+  background:#2a2a2a;
+  border-radius:10px;
+  margin-top:10px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  background:var(--bone);
+  border-radius:10px;
+  transition:width 1s ease;
+}
+
+/* SCROLL ANIMATION (simple fade-in) */
+.section{
+  animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* HOVER MICRO-INTERACTION */
+.card:hover p{
+  color:var(--white);
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:768px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:42px;
+  }
+
+  .navbar{
+    padding:15px 5%;
+  }
+
+  .section{
+    padding:120px 8%;
+  }
+}
