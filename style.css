@@ -27,14 +27,40 @@ body{
   line-height:1.7;
   overflow-x:hidden;
 
-  /* smooth page load */
-  animation:fadePage 0.6s ease;
+  /* ✨ Smooth page load */
+  animation:fadePage 0.8s ease;
 }
 
+/* 🔥 PARTICLE BACKGROUND */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 1px, transparent 1px),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,0.06) 1px, transparent 1px),
+    radial-gradient(circle at 40% 80%, rgba(255,255,255,0.05) 1px, transparent 1px);
+
+  background-size:120px 120px;
+  animation:particlesMove 40s linear infinite;
+}
+
+@keyframes particlesMove{
+  from{
+    transform:translateY(0);
+  }
+  to{
+    transform:translateY(-200px);
+  }
+}
+
+/* ✨ PAGE FADE */
 @keyframes fadePage{
   from{
     opacity:0;
-    transform:translateY(10px);
+    transform:translateY(15px);
   }
   to{
     opacity:1;
@@ -164,7 +190,7 @@ body{
   background:linear-gradient(120deg, transparent, var(--bone), transparent);
   opacity:0;
   transition:0.4s;
-  pointer-events:none; /* 🔥 important fix */
+  pointer-events:none;
 }
 
 .card:hover::before{
@@ -177,27 +203,30 @@ body{
 }
 
 /* TEXT */
-.card strong{
-  display:block;
-  margin-bottom:8px;
+.card strong,
+.card p{
+  position:relative;
+  z-index:2;
 }
 
 .card p{
   color:var(--soft);
   font-size:14px;
-  transition:0.3s;
 }
 
 .card:hover p{
   color:var(--white);
 }
 
-/* LINKS */
+/* MAKE CARD CLICKABLE */
 .card a{
-  position:relative;
-  z-index:2;
+  position:absolute;
+  inset:0;
+  z-index:5;
+  opacity:0;
 }
 
+/* LINKS */
 a{
   color:var(--bone);
   text-decoration:none;
