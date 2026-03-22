@@ -86,6 +86,16 @@ body{
   padding:140px 12%;
   max-width:1100px;
   margin:auto;
+
+  /* animation base */
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s ease;
+}
+
+.section.visible{
+  opacity:1;
+  transform:translateY(0);
 }
 
 .section-title{
@@ -127,6 +137,15 @@ body{
   margin-top:10px;
 }
 
+.hero::after{
+  content:"";
+  display:block;
+  width:80px;
+  height:2px;
+  background:var(--bone);
+  margin-top:20px;
+}
+
 /* GRID */
 .grid{
   display:grid;
@@ -144,9 +163,10 @@ body{
   transition:all 0.4s ease;
   position:relative;
   overflow:hidden;
+  cursor:pointer;
 }
 
-/* ✨ GLOW EFFECT */
+/* GLOW BORDER */
 .card::before{
   content:"";
   position:absolute;
@@ -162,21 +182,24 @@ body{
   opacity:1;
 }
 
+/* HOVER */
 .card:hover{
   transform:translateY(-6px) scale(1.02);
   box-shadow:0 10px 40px rgba(216,207,188,0.15);
 }
 
-/* TEXT INSIDE CARDS */
-.card strong{
-  display:block;
-  margin-bottom:8px;
-  font-weight:500;
+.card:hover strong{
+  color:var(--bone);
 }
 
 .card p{
   color:var(--soft);
   font-size:14px;
+  transition:0.3s;
+}
+
+.card:hover p{
+  color:var(--white);
 }
 
 /* LINKS */
@@ -209,7 +232,7 @@ a:hover{
   box-shadow:0 0 20px rgba(216,207,188,0.4);
 }
 
-/* PROGRESS BARS */
+/* PROGRESS */
 .progress{
   height:6px;
   background:#2a2a2a;
@@ -225,25 +248,37 @@ a:hover{
   transition:width 1s ease;
 }
 
-/* SCROLL ANIMATION (simple fade-in) */
-.section{
-  animation:fadeIn 1s ease;
+/* PROJECT PAGE SUPPORT */
+h1{
+  font-size:42px;
+  margin-bottom:30px;
 }
 
-@keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:translateY(20px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+h2{
+  margin-top:30px;
+  color:var(--bone);
 }
 
-/* HOVER MICRO-INTERACTION */
-.card:hover p{
-  color:var(--white);
+h2 + p{
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.05);
+  padding:20px;
+  border-radius:16px;
+  margin-bottom:20px;
+  transition:0.4s;
+}
+
+h2 + p:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 25px rgba(216,207,188,0.1);
+}
+
+/* BACK BUTTON */
+.back{
+  color:var(--bone);
+  text-decoration:none;
+  margin-bottom:30px;
+  display:inline-block;
 }
 
 /* MOBILE */
@@ -262,11 +297,11 @@ a:hover{
     font-size:42px;
   }
 
-  .navbar{
-    padding:15px 5%;
-  }
-
   .section{
     padding:120px 8%;
+  }
+
+  .navbar{
+    padding:15px 5%;
   }
 }
